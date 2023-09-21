@@ -1,13 +1,16 @@
 {
   "name": "parse_wav",
   "module": "index.js",
+  "scripts": {
+    "dev": "bun build WAVParser.js --outfile index.js --watch",
+    "dist": "bun build WAVParser.js --outfile index.js --minify",
+    "main": "bun run main.js",
+    "web": "bun --hot run server.js"
+  },
   "type": "module",
   "dependencies": {
     "arcsecond": ">=4.0.0",
     "arcsecond-binary": ">=1.2.0"
-  },
-  "devDependencies": {
-    "bun-types": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

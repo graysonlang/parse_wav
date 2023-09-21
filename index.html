@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google" content="notranslate" />
+    <title>Parse WAV</title>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+    <script src="./console.js" type="module"></script>
+    <script src="./index.js" type="module"></script>
+    <script type="module">
+      import { default as console_init } from "./console.js";
+      console_init()
+      import parse_wav from "./index.js";
+
+      function checkResponse(response) {
+        if (!response.ok) {
+          throw new Error(`HTTP Status ${response.status} (${response.statusText})`);
+        }
+        return response;
+      }
+
+      window.addEventListener("load", async () => {
+        try {
+          fetch("./test.wav")
+          .then(response => checkResponse(response) && response.arrayBuffer())
+          .then(buffer => parse_wav(buffer))
+          .catch(error => console.error(error));
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    </script>
+    <style>body { background-color: #111; color: #ccc; margin: 32px; }</style>
+  </head>
+  <body></body>
+</html>
